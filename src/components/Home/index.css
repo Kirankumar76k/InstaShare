@@ -1,0 +1,26 @@
+.user-stories-list-items {
+  list-style-type: none;
+}
+.user-stories-desktop-view {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  align-items: center;
+  max-width: 1110px;
+  margin: auto;
+}
+.user-stories-desktop-view {
+  display: none;
+}
+.user-stories-mobile-view {
+  padding-left: 8%;
+  padding-right: 8%;
+}
+@media screen and (min-width: 768px) {
+  .user-stories-desktop-view {
+    display: block;
+  }
+  .user-stories-mobile-view {
+    display: none;
+  }
+}
