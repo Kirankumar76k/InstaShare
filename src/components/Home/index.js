@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
 import UsersPostsCard from '../UsersPostsCard'
+import SearchPostsCard from '../SearchPostsCard'
 import Header from '../Header'
 
 import StoriesCard from '../StoriesCard'
@@ -19,13 +20,41 @@ class Home extends Component {
   state = {
     userStories: [],
     usersPosts: [],
+    searchPostsList: [],
+    searchInput: '',
+    searchPostsApiStatus: constantApiStatus.initial,
     usersStoriesApiStatus: constantApiStatus.initial,
     usersPostsApiStatus: constantApiStatus.initial,
   }
 
   componentDidMount() {
+    this.getSearchResults()
     this.getUserStories()
     this.getUserPosts()
+  }
+
+  getSearchResults = async () => {
+    this.setState({searchPostsApiStatus: constantApiStatus.inProgress})
+    const {searchInput} = this.state
+    const apiUrl = `https://apis.ccbp.in/insta-share/posts?search=${searchInput}`
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(apiUrl, options)
+    if (response.ok === true) {
+      const data = await response.json()
+      console.log(data)
+      this.setState({
+        searchPostsApiStatus: constantApiStatus.success,
+        searchPostsList: data.posts,
+      })
+    } else {
+      this.setState({searchPostsApiStatus: constantApiStatus.failure})
+    }
   }
 
   getUserStoriesFormattedData = eachItem => ({
@@ -48,7 +77,7 @@ class Home extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
+
       this.setState({
         usersPostsApiStatus: constantApiStatus.success,
         usersPosts: data.posts,
@@ -72,7 +101,7 @@ class Home extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
+
       const updatedData = data.users_stories.map(eachItem =>
         this.getUserStoriesFormattedData(eachItem),
       )
@@ -115,6 +144,39 @@ class Home extends Component {
     )
   }
 
+  renderSuccessViewOfSearchPosts = () => {
+    const {searchPostsList} = this.state
+    return (
+      <>
+        {searchPostsList.length === 0 ? (
+          <div className="search-fail-container">
+            <img
+              src="https://res.cloudinary.com/dpj2drryk/image/upload/v1652192630/Group_1_dwo6su.png"
+              alt="search not found"
+              className="search-fail-img"
+            />
+            <h1 className="search-fail-heading">Search Not Found</h1>
+            <p className="search-fail-description">
+              Try different keyword or search again
+            </p>
+          </div>
+        ) : (
+          <div className="user-posts-detailed-view">
+            <h1 className="search-heading">Search Results</h1>
+            <ul className="user-posts-list-items">
+              {searchPostsList.map(eachItem1 => (
+                <SearchPostsCard
+                  key={eachItem1.post_id}
+                  searchPostsDetails={eachItem1}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
+      </>
+    )
+  }
+
   renderLoaderView = () => (
     <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
@@ -149,12 +211,45 @@ class Home extends Component {
     }
   }
 
+  renderSearchResultsPosts = () => {
+    const {searchPostsApiStatus} = this.state
+    switch (searchPostsApiStatus) {
+      case constantApiStatus.inProgress:
+        return this.renderLoaderView()
+      case constantApiStatus.success:
+        return this.renderSuccessViewOfSearchPosts()
+      case constantApiStatus.failure:
+        return this.renderFailureViewOfSearchPosts()
+      default:
+        return null
+    }
+  }
+
+  changeSearchInput = searchInput => {
+    this.setState({searchInput})
+  }
+
+  enterSearchInput = () => {
+    this.getSearchResults()
+  }
+
   render() {
+    const {searchInput} = this.state
     return (
       <>
-        <Header />
-        {this.renderUserStories()}
-        {this.renderUserPosts()}
+        <Header
+          changeSearchInput={this.changeSearchInput}
+          enterSearchInput={this.enterSearchInput}
+          searchInput={searchInput}
+        />
+        {searchInput !== '' ? (
+          <>{this.renderSearchResultsPosts()}</>
+        ) : (
+          <>
+            {this.renderUserStories()}
+            {this.renderUserPosts()}
+          </>
+        )}
       </>
     )
   }

@@ -1,24 +1,39 @@
 .nav-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  width: 90%;
+  margin: auto;
+}
+@media screen and (min-width: 768px) {
 }
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  list-style-type: none;
 }
-.menu-container {
+.nav-logo-link {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+}
+.menu-container {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .nav-input-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
 
   width: 214px;
   height: 28px;
@@ -28,6 +43,31 @@
   background: #fafafa;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
+}
+.nav-small-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 214px;
+  height: 28px;
+  left: 781px;
+  top: 18px;
+
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+}
+.nav-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-small-input-container {
+    display: none;
+  }
 }
 .inputCls {
   outline: none;
@@ -112,12 +152,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  /* identical to box height, or 133% */
-
   color: #ffffff;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -132,9 +167,14 @@
   height: 26px;
   left: 960px;
   top: 19px;
-
   background: #dbdbdb;
   border-radius: 0px 2px 2px 0px;
+}
+.btn {
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border: none;
 }
 .nav-list {
   list-style-type: none;
@@ -142,14 +182,17 @@
   justify-content: center;
   align-items: center;
 }
+@media screen and (min-width: 768px) {
+  .nav-list {
+    justify-content: space-evenly;
+  }
+}
 .nav-name {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  /* identical to box height, or 129% */
-
   display: flex;
   align-items: center;
 
@@ -158,4 +201,12 @@
 }
 .active-nav-name {
   color: #4094ef;
+}
+.small-nav-list {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .small-nav-list {
+    display: block;
+  }
 }

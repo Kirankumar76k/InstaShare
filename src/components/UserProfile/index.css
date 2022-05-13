@@ -15,9 +15,10 @@
   align-items: flex-start;
   padding: 50px;
 }
-.my-profile-pic {
+.user-profile-pic {
   height: 180px;
   width: 180px;
+  border-radius: 100px;
 }
 .my-profile-name-container {
   margin-left: 70px;
@@ -32,7 +33,7 @@
 
   color: #262626;
 }
-.my-profile-followers-container {
+.user-profile-followers-container {
   display: flex;
 
   align-items: center;

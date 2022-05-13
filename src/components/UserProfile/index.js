@@ -63,11 +63,11 @@ class UserProfile extends Component {
             <img
               src={userProfileList.profile_pic}
               alt="user profile"
-              className="my-profile-pic"
+              className="user-profile-pic"
             />
             <div className="my-profile-name-container">
               <h1 className="my-profile-head">{userProfileList.user_name}</h1>
-              <div className="my-profile-followers-container">
+              <div className="user-profile-followers-container">
                 <p className="my-profile-common">
                   {userProfileList.posts_count} posts
                 </p>

@@ -2,16 +2,34 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
-
+import {RiCloseCircleFill} from 'react-icons/ri'
 import {GiHamburgerMenu} from 'react-icons/gi'
 
 import './index.css'
 
 class Header extends Component {
-  state = {searchInput: ''}
+  state = {isDisplayNavContainer: false, isDisplaySearchContainer: false}
 
   onChangeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
+    const {changeSearchInput} = this.props
+    changeSearchInput(event.target.value)
+  }
+
+  onClickSearchIcon = () => {
+    const {enterSearchInput} = this.props
+    enterSearchInput()
+  }
+
+  onClickCloseButton = () => {
+    this.setState({isDisplayNavContainer: false})
+  }
+
+  onClickOpenButton = () => {
+    this.setState({isDisplayNavContainer: true})
+  }
+
+  onClickSearchTab = () => {
+    this.setState({isDisplaySearchContainer: true})
   }
 
   onClickLogout = () => {
@@ -22,69 +40,137 @@ class Header extends Component {
   }
 
   render() {
-    const {searchInput} = this.state
+    const {searchInput} = this.props
+    const {isDisplayNavContainer, isDisplaySearchContainer} = this.state
 
     return (
-      <nav className="nav-container">
-        <div className="logo-container">
-          <Link to="/">
-            <img
-              src="https://res.cloudinary.com/dpj2drryk/image/upload/v1651904777/Standard_Collection_8_lvuxdc.png"
-              className="nav-logo-desktop-img"
-              alt="website logo"
-            />
-          </Link>
-          <h1 className="nav-title-head">Insta Share</h1>
-        </div>
-        <button
-          type="button"
-          className="hamburger-btn"
-          onClick={this.onClickHamBtn}
-          testid="hamburgerMenuIcon"
-        >
-          <GiHamburgerMenu className="ham-icon" />
-        </button>
-        <div className="menu-container">
-          <div className="nav-input-container">
-            <input
-              type="search"
-              value={searchInput}
-              className="inputCls"
-              onChange={this.onChangeSearchInput}
-              placeholder="Search Caption"
-            />
-            <button
-              type="button"
-              className="search-icon-btn"
-              testid="searchIcon"
-              onClick={this.onClickSearchIcon}
-            >
-              <FaSearch className="search-icon" />
-            </button>
+      <>
+        <nav className="nav-container">
+          <ul className="logo-container">
+            <Link to="/" className="nav-logo-link">
+              <li>
+                <img
+                  src="https://res.cloudinary.com/dpj2drryk/image/upload/v1651904777/Standard_Collection_8_lvuxdc.png"
+                  className="nav-logo-desktop-img"
+                  alt="website logo"
+                />
+              </li>
+            </Link>
+            <li>
+              <h1 className="nav-title-head">Insta Share</h1>
+            </li>
+          </ul>
+          <button
+            type="button"
+            className="hamburger-btn btn"
+            onClick={this.onClickOpenButton}
+            testid="hamburgerMenuIcon"
+          >
+            <GiHamburgerMenu className="ham-icon" />
+          </button>
+          <div className="menu-container">
+            <div className="nav-input-container">
+              <input
+                type="search"
+                value={searchInput}
+                className="inputCls"
+                onChange={this.onChangeSearchInput}
+                placeholder="Search Caption"
+              />
+              <button
+                type="button"
+                className="search-icon-btn"
+                testid="searchIcon"
+                onClick={this.onClickSearchIcon}
+              >
+                <FaSearch className="search-icon" />
+              </button>
+            </div>
+            <ul className="nav-list">
+              <li>
+                <Link to="/" className="nav-link">
+                  <p className="nav-name">Home</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/my-profile" className="nav-link">
+                  <p className="nav-name">Profile</p>
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={this.onClickLogout}
+                  className="logoutBtn"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
           </div>
+        </nav>
+        {isDisplayNavContainer && (
           <ul className="nav-list">
-            <li>
-              <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link">
+              <li>
                 <p className="nav-name">Home</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/my-profile" className="nav-link">
-                <p className="nav-name">Profile</p>
-              </Link>
-            </li>
+              </li>
+            </Link>
             <li>
               <button
                 type="button"
-                onClick={this.onClickLogout}
+                className="search-tab-button btn"
+                onClick={this.onClickSearchTab}
+              >
+                <p className="nav-name">Search</p>
+              </button>
+            </li>
+            <Link to="/my-profile" className="nav-link">
+              <li>
+                <p className="nav-name">Profile</p>
+              </li>
+            </Link>
+            <li>
+              <button
                 className="logoutBtn"
+                type="button"
+                onClick={this.onClickLogout}
               >
                 Logout
               </button>
             </li>
+            <button
+              className="hamburger-button btn"
+              type="button"
+              onClick={this.onClickCloseButton}
+              testid="closeIcon"
+            >
+              <RiCloseCircleFill className="close-icon btn" />
+            </button>
           </ul>
-        </div>
-      </nav>
+        )}
+        {isDisplaySearchContainer && (
+          <div className="nav-small">
+            <div className="nav-small-input-container">
+              <input
+                type="search"
+                value={searchInput}
+                className="inputCls"
+                onChange={this.onChangeSearchInput}
+                placeholder="Search Caption"
+              />
+              <button
+                type="button"
+                className="search-icon-btn"
+                testid="searchIcon"
+                onClick={this.onClickSearchIcon}
+              >
+                <FaSearch className="search-icon" />
+              </button>
+            </div>
+          </div>
+        )}
+      </>
     )
   }
 }

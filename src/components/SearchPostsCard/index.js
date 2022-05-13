@@ -7,7 +7,7 @@ import {BiShareAlt} from 'react-icons/bi'
 
 import './index.css'
 
-class UsersPostsCard extends Component {
+class SearchPostsCard extends Component {
   state = {isLiked: false, likeCount: 0}
 
   componentDidMount() {
@@ -17,8 +17,8 @@ class UsersPostsCard extends Component {
   getLikeStatus = async () => {
     const jwtToken = Cookies.get('jwt_token')
     const {likedStatus} = this.state
-    const {usersPostsDetails} = this.props
-    const {postId} = usersPostsDetails.post_id
+    const {searchPostsDetails} = this.props
+    const {postId} = searchPostsDetails.post_id
     const apiUrl = `https://apis.ccbp.in/insta-share/posts/${postId}/like`
     const options = {
       method: 'POST',
@@ -45,28 +45,33 @@ class UsersPostsCard extends Component {
   }
 
   render() {
-    const {usersPostsDetails} = this.props
+    const {searchPostsDetails} = this.props
+
     const {likeCount, isLiked} = this.state
+
+    console.log(searchPostsDetails)
     return (
-      <div className="userPostsCard-container" key={usersPostsDetails.post_id}>
+      <div className="userPostsCard-container" key={searchPostsDetails.post_id}>
         <div className="UsersPostsCard-profile">
           <div className="img-container">
             <img
-              src={usersPostsDetails.profile_pic}
+              src={searchPostsDetails.profile_pic}
               alt="UsersPostsCard-profile"
               className="UsersPostsCard-profile-img"
             />
           </div>
           <Link
-            to={`/users/${usersPostsDetails.user_id}`}
+            to={`/users/${searchPostsDetails.user_id}`}
             className="nav-logo-link"
           >
-            <p className="UsersPostsCard-name">{usersPostsDetails.user_name}</p>
+            <p className="UsersPostsCard-name">
+              {searchPostsDetails.user_name}
+            </p>
           </Link>
         </div>
         <div className="post-details-container">
           <img
-            src={usersPostsDetails.post_details.image_url}
+            src={searchPostsDetails.post_details.image_url}
             alt="post details"
             className="post-details-img"
           />
@@ -92,27 +97,28 @@ class UsersPostsCard extends Component {
                 <BsHeartFill className="icon-btn-cls active-like" />
               </button>
             )}
+
             <FaRegComment className="icon-btn-cls" />
             <BiShareAlt className="icon-btn-cls" />
           </div>
           <p className="likes-count-cls">
-            {usersPostsDetails.likes_count + likeCount} likes
+            {searchPostsDetails.likes_count + likeCount} likes
           </p>
           <p className="post-details-caption">
-            {usersPostsDetails.post_details.caption}
+            {searchPostsDetails.post_details.caption}
           </p>
           <ul className="comments-detail-container">
-            {usersPostsDetails.comments.map(eachItem => (
+            {searchPostsDetails.comments.map(eachItem => (
               <li key={eachItem.user_id} className="comment-list-item">
                 <p className="commented-user-name">{eachItem.user_name}</p>
                 <p className="commented-text">{eachItem.comment}</p>
               </li>
             ))}
           </ul>
-          <p className="created-at">{usersPostsDetails.created_at}</p>
+          <p className="created-at">{searchPostsDetails.created_at}</p>
         </div>
       </div>
     )
   }
 }
-export default UsersPostsCard
+export default SearchPostsCard

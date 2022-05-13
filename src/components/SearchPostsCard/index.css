@@ -5,20 +5,6 @@
   max-width: 1110px;
   margin: auto;
 }
-@media screen and (max-width: 768px) {
-  .userPostsCard-container {
-    width: 360px;
-  }
-  .UsersPostsCard-profile {
-    width: 360px;
-  }
-  .post-details-img {
-    width: 360px;
-  }
-  .below-container {
-    width: 360px;
-  }
-}
 .UsersPostsCard-profile {
   display: flex;
   align-items: center;
@@ -56,8 +42,7 @@
 .post-details-img {
   width: 1040px;
 }
-
-. {
+.below-container {
   box-sizing: border-box;
 
   width: 1040px;
@@ -70,7 +55,6 @@
   border-radius: 0px 0px 4px 4px;
   padding: 20px;
 }
-
 .likes-count-cls {
   font-family: 'Roboto';
   font-style: normal;

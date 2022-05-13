@@ -35,3 +35,17 @@
   justify-content: center;
   align-items: center;
 }
+.search-heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  color: #262626;
+  padding-top: 25px;
+}

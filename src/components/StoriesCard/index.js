@@ -15,8 +15,8 @@ const StoriesCard = props => {
     <div className="user-stories-list-items">
       <Slider {...settings} slidesToShow={slidesToShow}>
         {userStories.map(eachItem => (
-          <div>
-            <div className="main-container" key={eachItem.userId}>
+          <div key={eachItem.userId}>
+            <div className="main-container">
               <img
                 src={eachItem.storyUrl}
                 alt="user story"
