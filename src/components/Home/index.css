@@ -1,5 +1,10 @@
+.user-posts-detailed-view {
+  background: #fafafa;
+  min-height: 100vh;
+}
 .user-stories-list-items {
   list-style-type: none;
+  background: #fafafa;
 }
 .user-stories-desktop-view {
   display: flex;
@@ -8,6 +13,7 @@
   align-items: center;
   max-width: 1110px;
   margin: auto;
+  background: #fafafa;
 }
 .user-stories-desktop-view {
   display: none;
@@ -23,4 +29,9 @@
   .user-stories-mobile-view {
     display: none;
   }
+}
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

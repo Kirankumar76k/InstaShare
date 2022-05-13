@@ -1,0 +1,137 @@
+.userPostsCard-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1110px;
+  margin: auto;
+}
+.UsersPostsCard-profile {
+  display: flex;
+  align-items: center;
+  width: 1040px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.UsersPostsCard-profile-img {
+  height: 28px;
+  width: 28px;
+  border-radius: 100px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.UsersPostsCard-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 129% */
+
+  display: flex;
+  align-items: center;
+
+  color: #262626;
+}
+
+.post-details-img {
+  width: 1040px;
+}
+.below-container {
+  box-sizing: border-box;
+
+  width: 1040px;
+  min-height: 194px;
+  left: 0px;
+  top: 672px;
+
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 0px 0px 4px 4px;
+  padding: 20px;
+}
+.likes-count-cls {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 129% */
+
+  display: flex;
+  align-items: center;
+
+  color: #262626;
+}
+.post-details-caption {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 129% */
+
+  display: flex;
+  align-items: center;
+
+  color: #262626;
+}
+.comments-detail-container {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+.comment-list-item {
+  display: flex;
+  align-items: center;
+}
+.commented-user-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  margin-right: 8px;
+  margin-top: 0px;
+  color: #262626;
+}
+
+.commented-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+
+  font-size: 14px;
+  margin-top: 0px;
+  color: #262626;
+}
+.created-at {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  display: flex;
+  align-items: center;
+
+  color: #989898;
+}
+.like-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.icon-btn-cls {
+  color: #475569;
+  font-size: 18px;
+  margin-right: 7px;
+}
+.active-like {
+  color: red;
+}

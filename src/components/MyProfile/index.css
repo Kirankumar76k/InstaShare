@@ -1,0 +1,120 @@
+.my-profile-responsive {
+  background: #fafafa;
+  min-height: 100vh;
+}
+.my-profile-container {
+  background: #fafafa;
+  min-height: 100vh;
+  width: 90%;
+  max-width: 1110px;
+  margin: auto;
+}
+.top-profile-container {
+  display: flex;
+
+  align-items: flex-start;
+  padding: 50px;
+}
+.my-profile-pic {
+  height: 180px;
+  width: 180px;
+}
+.my-profile-name-container {
+  margin-left: 70px;
+}
+.my-profile-head {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 32px;
+  /* identical to box height, or 100% */
+
+  color: #262626;
+}
+.my-profile-followers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-profile-common {
+  margin-right: 50px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+
+  color: #262626;
+}
+.my-profile-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  color: #262626;
+}
+.my-profile-bio {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+  color: #262626;
+}
+.my-profile-user-stories-container {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+.my-profile-story-img {
+  height: 86px;
+  border-radius: 100px;
+}
+.my-profile-story-item {
+  margin-right: 40px;
+
+  border-radius: 100px;
+}
+.my-grid-container {
+  display: flex;
+
+  align-items: center;
+}
+.my-grid-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  /* identical to box height, or 133% */
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+
+  color: #262626;
+}
+.my-profile-post-list {
+  list-style-type: none;
+  display: flex;
+  padding: 0px;
+
+  flex-wrap: wrap;
+}
+.my-profile-post-list-item {
+  padding: 0px;
+  margin-right: 30px;
+}
+.my-profile-posts-img {
+  width: 330px;
+  height: 330px;
+}

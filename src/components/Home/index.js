@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import UsersPostsCard from '../UsersPostsCard'
 import Header from '../Header'
 
 import StoriesCard from '../StoriesCard'
@@ -17,7 +18,7 @@ const constantApiStatus = {
 class Home extends Component {
   state = {
     userStories: [],
-    userPosts: [],
+    usersPosts: [],
     usersStoriesApiStatus: constantApiStatus.initial,
     usersPostsApiStatus: constantApiStatus.initial,
   }
@@ -36,7 +37,7 @@ class Home extends Component {
   getUserPosts = async () => {
     this.setState({usersPostsApiStatus: constantApiStatus.inProgress})
 
-    const apiUrl = 'https://apis.ccbp.in/insta-share/stories'
+    const apiUrl = 'https://apis.ccbp.in/insta-share/posts'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -48,12 +49,9 @@ class Home extends Component {
     if (response.ok === true) {
       const data = await response.json()
       console.log(data)
-      const updatedData = data.users_posts.map(eachItem =>
-        this.getUserStoriesFormattedData(eachItem),
-      )
       this.setState({
         usersPostsApiStatus: constantApiStatus.success,
-        userPosts: updatedData,
+        usersPosts: data.posts,
       })
     } else {
       this.setState({usersPostsApiStatus: constantApiStatus.failure})
@@ -101,6 +99,22 @@ class Home extends Component {
     )
   }
 
+  renderSuccessViewOfUserPosts = () => {
+    const {usersPosts} = this.state
+    return (
+      <div className="user-posts-detailed-view">
+        <ul className="user-posts-list-items">
+          {usersPosts.map(eachItem => (
+            <UsersPostsCard
+              key={eachItem.post_id}
+              usersPostsDetails={eachItem}
+            />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
   renderLoaderView = () => (
     <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
@@ -121,11 +135,26 @@ class Home extends Component {
     }
   }
 
+  renderUserPosts = () => {
+    const {usersPostsApiStatus} = this.state
+    switch (usersPostsApiStatus) {
+      case constantApiStatus.inProgress:
+        return this.renderLoaderView()
+      case constantApiStatus.success:
+        return this.renderSuccessViewOfUserPosts()
+      case constantApiStatus.failure:
+        return this.renderFailureViewOfUserPosts()
+      default:
+        return null
+    }
+  }
+
   render() {
     return (
       <>
         <Header />
         {this.renderUserStories()}
+        {this.renderUserPosts()}
       </>
     )
   }
