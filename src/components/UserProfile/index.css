@@ -15,9 +15,11 @@
   align-items: flex-start;
   padding: 50px;
 }
+
 .user-profile-pic {
   height: 180px;
   width: 180px;
+
   border-radius: 100px;
 }
 .my-profile-name-container {

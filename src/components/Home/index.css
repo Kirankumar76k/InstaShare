@@ -1,35 +1,10 @@
-.user-posts-detailed-view {
-  background: #fafafa;
-  min-height: 100vh;
-}
-.user-stories-list-items {
-  list-style-type: none;
-  background: #fafafa;
-}
-.user-stories-desktop-view {
+.search-post-list {
   display: flex;
   justify-content: center;
-  width: 90%;
   align-items: center;
-  max-width: 1110px;
-  margin: auto;
-  background: #fafafa;
+  flex-direction: column;
 }
-.user-stories-desktop-view {
-  display: none;
-}
-.user-stories-mobile-view {
-  padding-left: 8%;
-  padding-right: 8%;
-}
-@media screen and (min-width: 768px) {
-  .user-stories-desktop-view {
-    display: block;
-  }
-  .user-stories-mobile-view {
-    display: none;
-  }
-}
+
 .loader-container {
   display: flex;
   justify-content: center;
@@ -48,4 +23,101 @@
   width: 80%;
   color: #262626;
   padding-top: 25px;
+}
+/* 
+.................................................. */
+.line {
+  margin-top: 10px;
+  border: 0.5px solid #c6c6c8;
+  top: 1282px;
+}
+.home-container {
+  width: 380px;
+  height: 640px;
+}
+.search-fail-con {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search-fail-image {
+  width: 258px;
+  height: 210px;
+}
+.search-fail-heading {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 48px;
+  text-align: center;
+  color: #262626;
+}
+.search-heading {
+  display: none;
+}
+.search-fail-description {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  color: #262626;
+}
+
+@media screen and (min-width: 768px) {
+  .search-heading {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #262626;
+  }
+  .search-fail-description {
+    font-size: 20px;
+  }
+  .search-fail-heading {
+    font-size: 32px;
+  }
+  .home-container {
+    width: 100%;
+    min-height: 100vh;
+    background: #fafafa;
+  }
+  .search-results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .home-line {
+    display: none;
+  }
+  .search-fail-heading {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 48px;
+    text-align: center;
+    color: #262626;
+  }
+  .search-fail-description {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #989898;
+  }
+  .search-fail-image {
+    width: 500px;
+    height: 409px;
+  }
 }

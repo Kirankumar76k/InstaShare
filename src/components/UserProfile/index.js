@@ -60,11 +60,13 @@ class UserProfile extends Component {
       <div className="my-profile-responsive">
         <div className="my-profile-container">
           <div className="top-profile-container">
-            <img
-              src={userProfileList.profile_pic}
-              alt="user profile"
-              className="user-profile-pic"
-            />
+            <div className="story-ring">
+              <img
+                src={userProfileList.profile_pic}
+                alt="user profile"
+                className="user-profile-pic"
+              />
+            </div>
             <div className="my-profile-name-container">
               <h1 className="my-profile-head">{userProfileList.user_name}</h1>
               <div className="user-profile-followers-container">
@@ -127,7 +129,13 @@ class UserProfile extends Component {
     </div>
   )
 
-  renderFailureViewOfUserProfile = () => <SomethingWentWrongCard />
+  retryFunction = () => {
+    this.getUserProfile()
+  }
+
+  renderFailureViewOfUserProfile = () => (
+    <SomethingWentWrongCard retryFunction={this.retryFunction} />
+  )
 
   renderUserProfileView = () => {
     const {userProfileApiStatus} = this.state

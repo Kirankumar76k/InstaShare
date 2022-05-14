@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
 import {RiCloseCircleFill} from 'react-icons/ri'
 import {GiHamburgerMenu} from 'react-icons/gi'
@@ -110,7 +110,7 @@ class Header extends Component {
           </div>
         </nav>
         {isDisplayNavContainer && (
-          <ul className="nav-list">
+          <ul className="nav-list small-list2">
             <Link to="/" className="nav-link">
               <li>
                 <p className="nav-name">Home</p>
@@ -174,4 +174,4 @@ class Header extends Component {
     )
   }
 }
-export default Header
+export default withRouter(Header)

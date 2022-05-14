@@ -122,7 +122,13 @@ class MyProfile extends Component {
     </div>
   )
 
-  renderFailureViewOfMyProfile = () => <SomethingWentWrongCard />
+  retryFunction = () => {
+    this.getMyProfile()
+  }
+
+  renderFailureViewOfMyProfile = () => (
+    <SomethingWentWrongCard retryFunction={this.retryFunction} />
+  )
 
   renderMyProfileView = () => {
     const {myProfileApiStatus} = this.state

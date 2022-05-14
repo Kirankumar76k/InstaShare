@@ -1,31 +1,25 @@
 .userPostsCard-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 1110px;
-  margin: auto;
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0px;
 }
 @media screen and (max-width: 768px) {
   .userPostsCard-container {
-    width: 360px;
-  }
-  .UsersPostsCard-profile {
-    width: 360px;
-  }
-  .post-details-img {
-    width: 360px;
-  }
-  .below-container {
-    width: 360px;
+    margin-top: 0px;
+    margin-left: -22px;
   }
 }
 .UsersPostsCard-profile {
   display: flex;
   align-items: center;
-  width: 1040px;
+  width: 100%;
   height: 60px;
-  left: 0px;
-  top: 0px;
+
   background: #ffffff;
   border: 1px solid #dbdbdb;
   border-radius: 4px 4px 0px 0px;
@@ -54,16 +48,16 @@
 }
 
 .post-details-img {
-  width: 1040px;
+  width: 100%;
+  height: 375px;
 }
 
-. {
+.below-container {
   box-sizing: border-box;
 
-  width: 1040px;
-  min-height: 194px;
+  width: 100%;
+
   left: 0px;
-  top: 672px;
 
   background: #ffffff;
   border: 1px solid #dbdbdb;
@@ -150,4 +144,49 @@
 }
 .active-like {
   color: red;
+}
+@media screen and (max-width: 768px) {
+  .likes-count-cls {
+    font-size: 12px;
+  }
+  .post-details-caption {
+    font-size: 12px;
+  }
+
+  .commented-user-name {
+    font-size: 13px;
+    margin-right: 2px;
+  }
+
+  .commented-text {
+    font-size: 12px;
+  }
+  .created-at {
+    font-size: 12px;
+  }
+  .like-btn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  .icon-btn-cls {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .userPostsCard-container {
+    width: 1040px;
+  }
+  .UsersPostsCard-profile {
+    width: 1040px;
+  }
+  .post-details-img {
+    width: 1040px;
+    min-height: 1000px;
+  }
+  .below-container {
+    width: 1040px;
+  }
 }

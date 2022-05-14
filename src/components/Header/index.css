@@ -179,6 +179,7 @@
 .nav-list {
   list-style-type: none;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -205,8 +206,14 @@
 .small-nav-list {
   display: none;
 }
+/* .small-list2 {
+  display: none;
+} */
 @media screen and (max-width: 768px) {
   .small-nav-list {
     display: block;
   }
+  /* .small-list2 {
+    display: block;
+  } */
 }

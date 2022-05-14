@@ -8,7 +8,7 @@ import {BiShareAlt} from 'react-icons/bi'
 import './index.css'
 
 class SearchPostsCard extends Component {
-  state = {isLiked: false, likeCount: 0}
+  state = {isLiked: false, likeCount: 0, likedStatus: false}
 
   componentDidMount() {
     this.getLikeStatus()
@@ -28,8 +28,10 @@ class SearchPostsCard extends Component {
       body: JSON.stringify({like_status: likedStatus}),
     }
     const response = await fetch(apiUrl, options)
-    const data = await response.json()
-    console.log(data)
+    if (response.ok === true) {
+      const data = await response.json()
+      console.log(data)
+    }
   }
 
   onClickLikeBtn = () => {
@@ -51,31 +53,34 @@ class SearchPostsCard extends Component {
 
     console.log(searchPostsDetails)
     return (
-      <div className="userPostsCard-container" key={searchPostsDetails.post_id}>
+      <li
+        className="userPostsCard-container"
+        testid="postCard"
+        key={searchPostsDetails.post_id}
+      >
         <div className="UsersPostsCard-profile">
-          <div className="img-container">
-            <img
-              src={searchPostsDetails.profile_pic}
-              alt="UsersPostsCard-profile"
-              className="UsersPostsCard-profile-img"
-            />
-          </div>
+          <img
+            src={searchPostsDetails.profile_pic}
+            alt="UsersPostsCard-profile"
+            className="UsersPostsCard-profile-img"
+          />
+
           <Link
             to={`/users/${searchPostsDetails.user_id}`}
             className="nav-logo-link"
           >
-            <p className="UsersPostsCard-name">
+            <h1 className="UsersPostsCard-name">
               {searchPostsDetails.user_name}
-            </p>
+            </h1>
           </Link>
         </div>
-        <div className="post-details-container">
-          <img
-            src={searchPostsDetails.post_details.image_url}
-            alt="post details"
-            className="post-details-img"
-          />
-        </div>
+
+        <img
+          src={searchPostsDetails.post_details.image_url}
+          alt="post details"
+          className="post-details-img"
+        />
+
         <div className="below-container">
           <div className="like-comment-share-container">
             {isLiked ? (
@@ -97,7 +102,6 @@ class SearchPostsCard extends Component {
                 <BsHeartFill className="icon-btn-cls active-like" />
               </button>
             )}
-
             <FaRegComment className="icon-btn-cls" />
             <BiShareAlt className="icon-btn-cls" />
           </div>
@@ -117,7 +121,7 @@ class SearchPostsCard extends Component {
           </ul>
           <p className="created-at">{searchPostsDetails.created_at}</p>
         </div>
-      </div>
+      </li>
     )
   }
 }

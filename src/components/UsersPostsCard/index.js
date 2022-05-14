@@ -8,7 +8,7 @@ import {BiShareAlt} from 'react-icons/bi'
 import './index.css'
 
 class UsersPostsCard extends Component {
-  state = {isLiked: false, likeCount: 0}
+  state = {isLiked: false, likeCount: 0, likedStatus: false}
 
   componentDidMount() {
     this.getLikeStatus()
@@ -48,29 +48,34 @@ class UsersPostsCard extends Component {
     const {usersPostsDetails} = this.props
     const {likeCount, isLiked} = this.state
     return (
-      <div className="userPostsCard-container" key={usersPostsDetails.post_id}>
+      <li
+        className="userPostsCard-container"
+        testid="postCard"
+        key={usersPostsDetails.post_id}
+      >
         <div className="UsersPostsCard-profile">
-          <div className="img-container">
-            <img
-              src={usersPostsDetails.profile_pic}
-              alt="UsersPostsCard-profile"
-              className="UsersPostsCard-profile-img"
-            />
-          </div>
+          <img
+            src={usersPostsDetails.profile_pic}
+            alt="UsersPostsCard-profile"
+            className="UsersPostsCard-profile-img"
+          />
+
           <Link
             to={`/users/${usersPostsDetails.user_id}`}
             className="nav-logo-link"
           >
-            <p className="UsersPostsCard-name">{usersPostsDetails.user_name}</p>
+            <h1 className="UsersPostsCard-name">
+              {usersPostsDetails.user_name}
+            </h1>
           </Link>
         </div>
-        <div className="post-details-container">
-          <img
-            src={usersPostsDetails.post_details.image_url}
-            alt="post details"
-            className="post-details-img"
-          />
-        </div>
+
+        <img
+          src={usersPostsDetails.post_details.image_url}
+          alt="post details"
+          className="post-details-img"
+        />
+
         <div className="below-container">
           <div className="like-comment-share-container">
             {isLiked ? (
@@ -111,7 +116,7 @@ class UsersPostsCard extends Component {
           </ul>
           <p className="created-at">{usersPostsDetails.created_at}</p>
         </div>
-      </div>
+      </li>
     )
   }
 }
