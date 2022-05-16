@@ -42,9 +42,9 @@ class InstaStories extends Component {
       },
     }
     const response = await fetch(apiUrl, options)
+    console.log(response)
     if (response.ok === true) {
       const data = await response.json()
-
       const updatedData = data.users_stories.map(eachItem =>
         this.getUserStoriesFormattedData(eachItem),
       )

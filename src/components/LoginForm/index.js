@@ -25,6 +25,7 @@ class LoginForm extends Component {
 
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
+      path: '/',
     })
     history.replace('/')
   }

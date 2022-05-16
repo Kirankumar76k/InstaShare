@@ -87,16 +87,18 @@ class Header extends Component {
               </button>
             </div>
             <ul className="nav-list">
-              <li>
-                <Link to="/" className="nav-link">
+              <Link to="/" className="nav-link">
+                <li>
                   <p className="nav-name">Home</p>
-                </Link>
-              </li>
-              <li>
-                <Link to="/my-profile" className="nav-link">
+                </li>
+              </Link>
+
+              <Link to="/my-profile" className="nav-link">
+                <li>
                   <p className="nav-name">Profile</p>
-                </Link>
-              </li>
+                </li>
+              </Link>
+
               <li>
                 <button
                   type="button"
